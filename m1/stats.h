@@ -9,10 +9,10 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.h
+ * @brief This file contains all functions needed for assignment 1 in coursera m * odule 1.
  *
- * <Add Extended Description Here>
+ * 
  *
  * @author <Add FirsName LastName>
  * @date <Add date >
