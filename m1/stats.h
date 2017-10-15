@@ -14,14 +14,26 @@
  *
  * 
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Amol More
+ * @date October 14th, 2017
  *
  */
 #ifndef __STATS_H__
 #define __STATS_H__
 
 /* Add Your Declarations and Function Comments here */ 
+
+/**
+ * @brief Prints an array of given length
+ *
+ * Prints an array of given length.
+ *
+ * @param arrayPtr Pointer to an array to be printed
+ * @param sizeOfArray Length of array to be printed 
+ *
+ * @return None
+ */
+void print_array(unsigned char * arrayPtr, unsigned int lenOfArray);
 
 /**
  * @brief <Add Brief Description of Function Here>
@@ -35,6 +47,24 @@
  *
  * @return <Add Return Informaiton here>
  */
+void sort_array(unsigned char * arrayPtr, unsigned int lenOfArray);
 
+/**
+ * @brief <Add Brief Description of Function Here>
+ *
+ * <Add Extended Description Here>
+ *
+ * @param <Add InputName> <add description here>
+ * @param <Add InputName> <add description here>
+ * @param <Add InputName> <add description here>
+ * @param <Add InputName> <add description here>
+ *
+ * @return <Add Return Informaiton here>
+ */
+unsigned int find_median(unsigned char * arrayPtr, unsigned int lenOfArray);
+unsigned int find_mean(unsigned char * arrayPtr, unsigned int lenOfArray);
+unsigned int find_minimum(unsigned char * arrayPtr, unsigned int lenOfArray);
+unsigned int find_maximum(unsigned char * arrayPtr, unsigned int lenOfArray);
+void print_statistics(void);
 
 #endif /* __STATS_H__ */
