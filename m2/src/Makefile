@@ -31,7 +31,8 @@ CPPFLAGS = -Wall -Werror -g -O0 -std=c99 -D$(PLATFORM)
 ifeq ($(PLATFORM), MSP432)
 
 # Architectures Specific Flags
-	LINKER_FILE = ../msp432p401r.lds 
+	LINKER_FILE = /home/amol/Embedded_Systems_Linux/m2/msp432p401r.lds 
+	#LINKER_FILE = msp432p401r.lds
 	CPU = cortex-m4
 	ARCH = thumb
 	SPECS = nosys.specs
@@ -42,7 +43,7 @@ ifeq ($(PLATFORM), MSP432)
 # Compiler Flags and Defines
 	CC = arm-none-eabi-gcc 
 	LD = arm-none-eabi-ld 
-	LDFLAGS = -Wl, -Map=$(TARGET).map -T $(LINKER_FILE)
+	LDFLAGS = -Wl,-Map=$(TARGET).map,-T $(LINKER_FILE)
 	CFLAGS = -mcpu=$(CPU) -m$(ARCH) -march=$(ARMARCH) -mfpu=$(FPU) -mfloat-abi=$(FLOAT-ABI) --specs=$(SPECS)
 	
 endif 
@@ -55,11 +56,11 @@ ifeq ($(PLATFORM),HOST)
 # Compiler Flags and Defines
 	CC = gcc
 	LD = ld
-	LDFLAGS = -Wl, -Map=$(TARGET).map
+	LDFLAGS = -Wl,-Map=$(TARGET).map
 	CFLAGS =   
 endif
 
-OBJS = $(SRCS: .c = .o)
+OBJS = $(SOURCES:.c=.o)
 
 %.o : %.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -I$(INCLUDES) -c $< -o $@
@@ -70,12 +71,11 @@ OBJS = $(SRCS: .c = .o)
 #%.asm : %.o
 
 .PHONY: compile-all
-compile-all: $(OBJS)
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(OBJS) -c -o $@
+compile-all: $(OBJS)	
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(OBJS) -c -o $@ 
 
 .PHONY: build
 build: $(TARGET).out
-
 $(TARGET).out: $(OBJS)
 	$(CC) $(OBJS) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
 

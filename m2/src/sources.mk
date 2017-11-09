@@ -9,10 +9,27 @@
 #
 #*****************************************************************************
 
+ifeq ($(PLATFORM),HOST)
 # Add your Source files to this variable
-SOURCES = main.c    \
-	  memory.c  \
+	SOURCES = main.c    \
+	  	  memory.c  \
 
 # Add your include paths to this variable
-INCLUDES = /home/amol/Embedded_Systems_Linux/m2/include/common
+	INCLUDES = /home/amol/Embedded_Systems_Linux/m2/include/common
+endif
+
+ifeq ($(PLATFORM),MSP432)
+# Add your Source files to this variable
+	SOURCES = main.c    \
+	  	  memory.c  \
+		  interrupts_msp432p401r_gcc.c \
+		  system_msp432p401r.c \
+		  startup_msp432p401r_gcc.c \
+
+# Add your include paths to this variable
+	INCLUDES_COMMON = /home/amol/Embedded_Systems_Linux/m2/include/common	
+	INCLUDES_CMSIS = /home/amol/Embedded_Systems_Linux/m2/include/CMSIS
+	INCLUDES_MSP432 = /home/amol/Embedded_Systems_Linux/m2/include/msp432
+	INCLUDES = $(INCLUDES_COMMON) -I$(INCLUDES_CMSIS) -I$(INCLUDES_MSP432)
+endif
 
